@@ -41,7 +41,12 @@ class StageDB {
     public static MediaPlayer getGameOverSound() {
         if (gameOverSound == null) {
             try {
-                // please write down the code for playing gameover sound
+                Media m = new Media(new File(GameOverSoundFileName).toURI().toString());
+                MediaPlayer mp = new MediaPlayer(m);
+                mp.setCycleCount(MediaPlayer.INDEFINITE); // loop play
+                mp.setRate(1.0); // 1.0 = normal speed
+                mp.setVolume(0.5); // volume from 0.0 to 1.0
+                gameOverSound = mp;
             } catch (Exception io) {
                 System.err.print(io.getMessage());
             }
